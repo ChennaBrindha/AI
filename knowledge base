@@ -1,0 +1,18 @@
+facts = {"bird(tweety)", "cat(sylvester)", "fish(nemo)"}
+rules = {"bird(X) -> canfly(X)"}
+
+def infer(facts, rules):
+    derived=set()
+    for r in rules:
+        lhs,rhs=r.split("->")
+        lhs=lhs.strip(); rhs=rhs.strip()
+        pred,arg=lhs[:-1].split("(")
+        for f in facts:
+            if f.startswith(pred):
+                derived.add(rhs.replace("X", f[f.index("(")+1:-1]))
+    return derived
+
+print("Facts:", facts)
+print("Inferred:", infer(facts, rules))
+Facts: {'bird(tweety)', 'cat(sylvester)', 'fish(nemo)'}
+Inferred: {'canfly(tweety)'}
