@@ -1,0 +1,20 @@
+people = {
+    "A": ["Mon", "Tue"],
+    "B": ["Tue", "Wed"],
+    "C": ["Tue", "Thu"],
+    "D": ["Tue", "Fri"],
+    "E": ["Tue", "Sat"]
+}
+
+# Start with the set of the first person's days
+common = set(next(iter(people.values())))
+
+# Intersect with everyone's availability
+for days in people.values():
+    common &= set(days)
+
+if common:
+    print("Meeting scheduled on:", ", ".join(common), "at 10AM, Room-101")
+else:
+    print("No common day available for the meeting.")
+Meeting scheduled on: Tue at 10AM, Room-101
